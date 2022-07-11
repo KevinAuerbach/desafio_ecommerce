@@ -29,7 +29,7 @@ let productos = [
     {prenda:"medias", color:"negro", precio:1500}
 ]
 
-
+let carritoUsuario = []
 
 
 //Comienzo del simulador
@@ -40,19 +40,24 @@ let carrito = prompt("Elija que prenda quiere llevar: (remera, jean, campera, za
 while(carrito != "salir"){
     switch(carrito){
         case "remera":
-            alert(`El precio de su producto es $${precioFinal(remera.precio)}`)
+            carrito = prompt(`El precio de su producto es $${precioFinal(remera.precio)}, desea agregar al carrito (si o no)?`).toLowerCase()
+            if(carrito == "si"){carritoUsuario.push(remera)}
             break
         case "jean":
-            alert(`El precio de su producto es $${precioFinal(jean.precio)}`)
+            carrito = prompt(`El precio de su producto es $${precioFinal(jean.precio)}, desea agregar al carrito (si o no)?`).toLowerCase()
+            if(carrito == "si"){carritoUsuario.push(jean)}
             break
         case "campera":
-            alert(`El precio de su producto es $${precioFinal(campera.precio)}`)
+            carrito = prompt(`El precio de su producto es $${precioFinal(campera.precio)}, desea agregar al carrito (si o no)?`).toLowerCase()
+            if(carrito == "si"){carritoUsuario.push(campera)}
             break
         case "zapatillas":
-            alert(`El precio de su producto es $${precioFinal(zapatillas.precio)}`)
+            carrito = prompt(`El precio de su producto es $${precioFinal(zapatillas.precio)}, desea agregar al carrito (si o no)?`).toLowerCase()
+            if(carrito == "si"){carritoUsuario.push(zapatillas)}
             break
         case "medias":
-            alert(`El precio de su producto es $${precioFinal(medias.precio)}`)
+            carrito = prompt(`El precio de su producto es $${precioFinal(medias.precio)}, desea agregar al carrito (si o no)?`).toLowerCase()
+            if(carrito == "si"){carritoUsuario.push(medias)}
             break
         default:
             alert("Lo siento, ese producto no se encuentra en la tienda")
@@ -60,9 +65,19 @@ while(carrito != "salir"){
         }
     carrito = prompt("Elija otro producto que desee (remera, jean, campera, zapatillas o medias) o escriba salir")
 }
+let total = carritoUsuario.reduce((acc,prod) => acc + prod.precio, 0)
+
+alert(`Su carrito tiene ${carritoUsuario.length} productos y el total de su compra es $${precioFinal(total)}`)
+carrito = prompt("1: confirmar compra, 2: vaciar carrito y salir")
+if(carrito === "1"){
+    alert("Gracias por su compra!, vuelva pronto")
+}else if(carrito === "2"){
+    carritoUsuario.splice(0,carritoUsuario.length)
+    alert("Gracias por visitarnos, vuelva pronto!")
+}
 
 
-alert("Gracias por visitar nuestra tienda, ojala vuelva pronto")
+
 
 
 
